@@ -6,6 +6,7 @@
 package GiaoDien;
 
 import DoiTuong.NhaCungCap;
+import DoiTuong.Xulingoaile;
 import HoTro.HienThi;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -40,9 +41,9 @@ public class QLNhaCungCap {
             ds = DocFile();
 
             HienThiDanhSach(ds);
-            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
-            System.out.println("║1. Thêm, 2. Sửa, 3. Xóa, 4. Tìm theo mã, 5. Tìm theo tên, 6. Menu chính, 7. Thoát                                                      ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+            System.out.println("║1. Thêm, 2. Sửa, 3. Xóa, 4. Tìm 5. Menu chính, 6. Thoát                                                                                ║");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print("Chọn chức năng: ");
             chucNang = Scan.nextInt();
             switch (chucNang) {
@@ -56,15 +57,22 @@ public class QLNhaCungCap {
                     Xoa();
                     break;
                 case 4:
-                    TimTheoMa();
+                    do {
+                        chucNang=Menu6();
+                        switch (chucNang)
+                        {
+                            case 1:TimTheoMa();
+                            break;
+                            case 2:TimTheoTen();
+                            break;
+                        }
+                    }while (chucNang>=1&&chucNang<=2);
                     break;
+
                 case 5:
-                    TimTheoTen();
-                    break;
-                case 6:
                     thoat = true;
                     break;
-                case 7:
+                case 6:
                     System.exit(0);
                     break;
             }
@@ -72,15 +80,15 @@ public class QLNhaCungCap {
     }
 
     private void TieuDeChucNang() {
-        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║                           CHỨC NĂNG QUẢN LÝ NHÀ CUNG CẤP                                                                              ║");
     }
 
     private void HienThiDanhSach(List<NhaCungCap> dsncc) {
         System.out.println("║                                DANH SÁCH NHÀ CUNG CẤP                                                                                 ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         System.out.println("║ MÃ NCC |            TÊN NCC            |    SỐ ĐIỆN THOẠI   |        ĐỊA CHỈ    |                                                     ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
 
         for (NhaCungCap ncc : dsncc) {
             System.out.println(ncc.ToString());
@@ -88,13 +96,13 @@ public class QLNhaCungCap {
     }
 
     private void HienThiChiTiet(NhaCungCap ncc) {
-        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║                               CHI TIẾT NHÀ CUNG CẤP                                                                                   ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         System.out.println("║ MÃ NCC |          TÊN NCC          |    SỐ ĐIỆN THOẠI   |        ĐỊA CHỈ     |                                                        ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         System.out.println(ncc.ToString());
-        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
     private void Them() {
@@ -104,7 +112,7 @@ public class QLNhaCungCap {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                                  THÊM NHÀ CUNG CẤP                                                                                 ║");
-            System.out.println("╚═════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             ds = DocFile();
             NhaCungCap ncc = new NhaCungCap();
@@ -132,7 +140,7 @@ public class QLNhaCungCap {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                                   SỬA NHÀ CUNG CẤP                                                                                    ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             ds = DocFile();
             System.out.print("Nhập mã nhà cung cấp:");
@@ -174,7 +182,7 @@ public class QLNhaCungCap {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                                   XÓA NHÀ CUNG CẤP                                                                                    ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
 
             ds = DocFile();
@@ -229,7 +237,21 @@ public class QLNhaCungCap {
         }
         return null;
     }
+    private   static  int Menu6(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(" ----------------------------------------------");
+        System.out.println("|            1. Tìm theo tên                   |");
+        System.out.println("|            2. Tìm theo mã                    |");
+        System.out.println("|            3. Quay lại                       |");
+        System.out.println(" ----------------------------------------------");
+        String epkieu;
+        do {
+            System.out.print("Vui lòng chọn (1-3) : ");
+            epkieu=scanner.nextLine();
 
+        }while(Xulingoaile.Kiemtra(epkieu)==false||Integer.parseInt(epkieu) < 0 || Integer.parseInt(epkieu) >3);
+        return Integer.parseInt(epkieu);
+    }
     private void TimTheoMa() {
         boolean luachon = false;
         do {
@@ -237,7 +259,7 @@ public class QLNhaCungCap {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                              TÌM THEO MÃ NHÀ CUNG CẤP                                                                                 ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             System.out.print("Nhập mã nhà cung cấp:");
             String mancc = Scan.next();
@@ -263,7 +285,7 @@ public class QLNhaCungCap {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                              TÌM THEO TÊN NHÀ CUNG CẤP                                                                                ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             System.out.print("Nhập tên nhà cung cấp:");
             String tenncc = Scan.next();
@@ -277,9 +299,9 @@ public class QLNhaCungCap {
             if (ncc==null) {
                 System.out.println("Không tìm thấy nhà cung cấp cần tìm!");
             } else {
-                System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════╗");
+                System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
                 HienThiDanhSach(dsTimKiem);
-                System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+                System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             }
 
             System.out.print("Bạn có muốm tiếp tục chức năng này không? (y/n):");

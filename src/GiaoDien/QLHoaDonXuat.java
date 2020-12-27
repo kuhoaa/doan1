@@ -45,9 +45,9 @@ public class QLHoaDonXuat {
             ds = DocFile();
             dsct=DocFileChiTiet();
             HienThiDanhSach(ds);
-            System.out.println("╟──────────────────────────────────────────────────────────────────────────────╢");
+            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
             System.out.println("║1. Thêm, 2. Sửa, 3. Xóa, 4. Tìm theo mã, 5. Tìm theo tên khách hàng, 6. Menu chính, 7. Thoát                                   ║");
-            System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print("Chọn chức năng: ");
             chucNang = Scan.nextInt();
             switch (chucNang) {
@@ -77,23 +77,27 @@ public class QLHoaDonXuat {
     }
 
     private void TieuDeChucNang() {
-        System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                            CHỨC NĂNG QUẢN LÝ HÓA ĐƠN XUẤT                                                     ║");
+        System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                                            CHỨC NĂNG QUẢN LÝ HÓA ĐƠN XUẤT      ║");
     }
 
     private void HienThiDanhSach(List<HoaDonXuat> hdx) {
-        System.out.println("║                                                 DANH SÁCH HÓA ĐƠN XUẤT                                                        ║");
-        System.out.println("╟──────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║                                                 DANH SÁCH HÓA ĐƠN XUẤT         ║");
+        System.out.println("╟────────────────────────────────────────────────────────────────────────────────╢");
         for (HoaDonXuat hd : hdx) {
             hd.hienthi();
-            System.out.println("╟──────────────────────────────────────────────────────────────────────────────╢");
-            System.out.println("║     MÃ CT         |    MÃ HÓA ĐƠN   |    MÃ MẶT HÀNG   |   SỐ LƯỢNG   |      GIÁ BÁN    |    SIZE   |    TỔNG TIỀN   | ║");
+            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+            System.out.println("║     MÃ CT         |    MÃ HÓA ĐƠN   |    MÃ MẶT HÀNG   |   SỐ LƯỢNG   |      GIÁ BÁN    |    SIZE   |    TỔNG TIỀN   |        ║");
+            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+
             for (CTHDX cthdx : dsct) {
                 if(cthdx.getMaHDX().contains(hd.getMaHDX())){
                     System.out.println(cthdx.ToString2());
                     
                 }   
             }
+            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+
         }
     }
     private void Them() {
@@ -358,7 +362,7 @@ public class QLHoaDonXuat {
                 String[] array = line.split(Pattern.quote("|"));
                 HoaDonXuat mh;
                 try {
-                    mh = new HoaDonXuat(array[0], array[1], array[2], nt.parse(array[3] + " "));
+                    mh = new HoaDonXuat(array[0], array[1], array[2],array[3],nt.parse(array[4] + " "));
                     ds.add((HoaDonXuat) mh);
                 } catch (ParseException ex) {
                     Logger.getLogger(QLHoaDonXuat.class.getName()).log(Level.SEVERE, null, ex);
@@ -377,7 +381,7 @@ public class QLHoaDonXuat {
                 if (mh.getMaHDX() != "") {
                     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     String strDate = dateFormat.format(mh.getNgayxuat());
-                    String content = mh.getMaHDX() + "|" + mh.getMaNV() + "|" + mh.getmaKH() + "|" + strDate;
+                    String content = mh.getMaHDX() + "|" + mh.getMaNV() + "|" + mh.getmaKH() + "|"+mh.get_tenKH() + "|" + strDate;
                     f.format(content + "\r\n", null);
                 }
             }

@@ -28,18 +28,30 @@ public class HoaDonXuat {
     private String _maNV;
     private String _maKH;
     private Date _ngayxuat;
+    private  String _tenKH;
     private SimpleDateFormat nt = new SimpleDateFormat("dd/MM/yyyy");
 
     public HoaDonXuat() {
 
+       _maKH =" ";
+       _tenKH=" ";
+       _ngayxuat =null;
+       _tenKH =" ";
+       _maHDX=" ";
     }
 
-    public HoaDonXuat(String _maHDX, String _maNV, String _maKH, Date _ngayxuất) {
+    public HoaDonXuat(String _maHDX, String _maNV, String _maKH , String _tenKH, Date _ngayxuất) {
         this._maHDX = _maHDX;
         this._maNV = _maNV;
         this._maKH = _maKH;
+        this._tenKH=_tenKH;
         this._ngayxuat = _ngayxuất;
+
+
+
     }
+
+
 
     public String getMaHDX() {
         return _maHDX;
@@ -59,6 +71,12 @@ public class HoaDonXuat {
 
     public String getmaKH() {
         return _maKH;
+    }
+    public void set_tenKH(String tenKH) {
+        this._tenKH=tenKH;
+    }
+    public String get_tenKH() {
+        return _tenKH;
     }
 
     public void setmaKH(String _tenKH) {
@@ -120,9 +138,9 @@ public class HoaDonXuat {
                 List<NhanVien> kh = DocFile();
                 kt = false;
                 for (NhanVien mh : kh) {
-                    if (mh.getMaNhanVien().contains(this._maNV)) {
+                    if (mh.getMaNhanVien().contains(this._maNV)&&this._maNV.equals(mh._maNhanVien)) {
                         kt = true;
-                        System.out.println(mh._maNhanVien);
+                        System.out.println("Tên nhân viên ứng với mã là: "+mh._tenNhanVien);
                         break;
                     }
                 }
@@ -149,9 +167,9 @@ public class HoaDonXuat {
                 List<KhachHang> kh = DocFilekh();
                 kt = false;
                 for (KhachHang mh : kh) {
-                    if (mh.getMaKhachHang ().contains(this._maKH)){
+                    if (this._maKH.contains(getmaKH())&&this._maKH.equals(mh.getMaKhachHang())){
                         kt = true;
-                        System.out.println(mh._maKhachHang);
+                        System.out.println("mã vừa nhập tên khách hàng là :"+mh._tenKhacHhang);
                         break;
                     }
                 }
@@ -160,7 +178,29 @@ public class HoaDonXuat {
                 }
             }
         } while (!(kt));
+        do {
+            kt = true;
+            System.out.print("Nhập tên khách hàng:");
+            this._tenKH = scan.nextLine();
+            if (("").contains(this._tenKH)) {
+                System.out.println("Lỗi: Tên khách hàng không được để trống");
+                kt = false;
+            }
+            if (kt) {
+                List<KhachHang> kh = DocFilekh();
+                kt = false;
+                for (KhachHang mh : kh) {
+                    if (this._tenKH.contains(get_tenKH())&&this._tenKH.equals(mh.getTenKhachHang())){
+                        kt = true;
 
+                        break;
+                    }
+                }
+                if (kt == false) {
+                    System.out.println("Lỗi: Mã khách hàng không khớp tên, vui lòng nhập lại");
+                }
+            }
+        } while (!(kt));
 
         do {
             try {
@@ -228,14 +268,41 @@ public class HoaDonXuat {
                 List<KhachHang> kh = DocFilekh();
                 kt = false;
                 for (KhachHang mh : kh) {
-                    if (mh.getMaKhachHang ().contains(this._maKH)){
+                    if (this._maKH.contains(getmaKH())&&this._maKH.equals(mh.getMaKhachHang())){
                         kt = true;
-                        System.out.println(mh._maKhachHang);
+                        System.out.println("mã vừa nhập tên khách hàng là :"+mh._tenKhacHhang);
                         break;
                     }
                 }
                 if (kt == false) {
                     System.out.println("Lỗi: mã khách hàng không tồn tại, vui lòng nhập lại");
+                }
+                if(kt==true)
+                {
+                    this._maKH=this._maKH+"|"+this._tenKH;
+                }
+            }
+        } while (!(kt));
+        do {
+            kt = true;
+            System.out.print("Nhập tên khách hàng:");
+            this._tenKH = scan.nextLine();
+            if (("").contains(this._tenKH)) {
+                System.out.println("Lỗi: Tên khách hàng không được để trống");
+                kt = false;
+            }
+            if (kt) {
+                List<KhachHang> kh = DocFilekh();
+                kt = false;
+                for (KhachHang mh : kh) {
+                    if (this._tenKH.contains(getmaKH())&&this._tenKH.equals(mh.getMaKhachHang())){
+                        kt = true;
+
+                        break;
+                    }
+                }
+                if (kt == false) {
+                    System.out.println("Lỗi: Mã khách hàng không khớp tên, vui lòng nhập lại");
                 }
             }
         } while (!(kt));
@@ -261,7 +328,7 @@ public class HoaDonXuat {
     public String ToString() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = dateFormat.format(this._ngayxuat);
-        return "║" + String.format("%-7s", this._maHDX) + "|" + String.format("%-7s", this._maNV) + "|" + String.format("%-30s", this._maKH) + "|" + strDate + "║";
+        return "║" + String.format("%-7s", this._maHDX) + "|" + String.format("%-7s", this._maNV) + "|" + String.format("%-30s", this._maKH) + "|"+ String.format("%-30s", this._tenKH) + "|" + strDate + "║";
     }
 
     public void hienthi() {
@@ -269,7 +336,8 @@ public class HoaDonXuat {
         String strDate = dateFormat.format(this._ngayxuat);
         System.out.println("║ Mã hóa đơn  : " + String.format("%-112s", this._maHDX) + "║");
         System.out.println("║ Mã nhân viên: " + String.format("%-112s", this._maNV) + "║");
-        System.out.println("║ Mã khách hàng: " + String.format("%-110s", this._maKH) + "║");
+        System.out.println("║ Mã khách hàng: " + String.format("%-110s", this.getmaKH())  + "║");
+        System.out.println("║ Tên khách hàng: " + String.format("%-110s",this._tenKH) + "║");
         System.out.println("║ Ngày xuất: " + String.format("%-115s", strDate) + "║");
         System.out.println("║ CHI TIẾT HÓA ĐƠN: " + String.format("%-108s", "") + "║");
     }

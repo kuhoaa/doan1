@@ -27,9 +27,9 @@ public class CTHDX {
     private int _giaban;
     private String _donvitinh;
     private int _tt;
-
+    private int _KM;
     public CTHDX() {
-
+    this._KM=0;
     }
 
     public CTHDX(String _maCTHDX, String _maHDX, String _maMH, int _soluong, int _giaban, String _donvitinh, int _tt) {
@@ -41,10 +41,17 @@ public class CTHDX {
         this._donvitinh = _donvitinh;
         this._tt = _tt;
     }
+public int sotiengiam;
 
     public String getMaCTHDX() {
         return _maCTHDX;
     }
+
+    public int get_KM() {
+        return _KM;
+    }
+public  void set_KM(int _KM)
+{       this._KM=_KM;}
 
     public void setMaCTHDX(String _maCTHDX) {
         this._maCTHDX = _maCTHDX;
@@ -101,6 +108,7 @@ public class CTHDX {
     public CTHDX Them(List<CTHDX> list) {
         Scanner scan = new Scanner(System.in);
         boolean kt = true;
+
         do {
             kt = true;
             System.out.print("nhập mã chi tiết hóa đơn xuất:");
@@ -152,6 +160,7 @@ public class CTHDX {
                 System.out.println("Lỗi số lượng phải lớn hơn 0");
                 kt = false;
             }
+         
         } while (!(kt));
         do {
             kt = true;
@@ -186,7 +195,8 @@ public class CTHDX {
             }
         } while (!(kt));
         System.out.println("thành tiền:");
-        _tt = _soluong * _giaban;
+        _tt = _soluong * _giaban-((this._KM*_tt)/100);
+
         System.out.print("số tiền đã trả là" + _tt);
         return this;
     }
@@ -228,6 +238,13 @@ public class CTHDX {
                 System.out.println("Lỗi số lượng phải lớn hơn 0");
                 kt = false;
             }
+            else if (this._soluong>2)
+            {
+                System.out.print("số lượng lớn hơn 2 ,nhập % chiết khấu ( nếu không chọn 0) : ");
+                sotiengiam=scan.nextInt();
+
+
+            }
         } while (!(kt));
         do {
             kt = true;
@@ -262,7 +279,7 @@ public class CTHDX {
             }
         } while (!(kt));
         System.out.println("thành tiền:");
-        _tt = _soluong * _giaban;
+        _tt = _soluong * _giaban-((sotiengiam*_tt)/100);
         System.out.print("số tiền đã trả là" + _tt);
         return this;
     }

@@ -149,7 +149,7 @@ public class NhaCungCap {
         do{
             kt=true;
             System.out.println("nhập tên nhà cung cấp:");
-            this._mancc=Scan.nextLine();
+            this._tenncc=Scan.nextLine();
             //kiểm tra tên nhà cung cấp không được rỗng
             if((" ").contains(this._tenncc)){
                 System.out.println("Lỗi: Tên nhà cung cấp không được để trống");

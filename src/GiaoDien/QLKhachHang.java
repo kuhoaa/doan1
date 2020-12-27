@@ -1,5 +1,6 @@
 package GiaoDien;
 import DoiTuong.KhachHang;
+import DoiTuong.Xulingoaile;
 import HoTro.HienThi;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,6 +19,8 @@ public class QLKhachHang {
     static Scanner Scan = new Scanner(System.in);
     static List<KhachHang> ds = new ArrayList<KhachHang>();
     HienThi hienThi =new HienThi();
+
+
     public void KhoiTao() {
         do{
             hienThi.XoaManHinh();
@@ -27,9 +30,9 @@ public class QLKhachHang {
             ds = DocFile();
 
             HienThiDanhSach(ds);
-            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
-            System.out.println("║1. Thêm, 2. Sửa, 3. Xóa, 4. Tìm theo mã, 5. Tìm theo tên, 6. Menu chính, 7. Thoát                                                      ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+            System.out.println("║1. Thêm, 2. Sửa, 3. Xóa, 4. Tìm  5. Menu chính, 6. Thoát                                                                                  ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print("Chọn chức năng: ");
             chucNang = Scan.nextInt();
             switch (chucNang)
@@ -44,31 +47,59 @@ public class QLKhachHang {
                     Xoa();
                     break;
                 case 4:
-                    TimTheoMa();
+                    do {
+
+
+                        chucNang = Menu6();
+                        switch (chucNang) {
+                            case 1:
+                                TimTheoMa();
+                                break;
+                            case 2:
+                                TimTheoTen();
+                                break;
+
+
+                        }
+                    }while (chucNang >= 1 && chucNang <= 2);
                     break;
+
                 case 5:
-                    TimTheoTen();
-                    break;
-                case 6:
                     thoat = true;
                     break;
-                case 7:
+                case 6:
                     System.exit(0);
                     break;
             }
         }while(!thoat);
     }
 
+        public  static  int Menu6(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(" ----------------------------------------------");
+        System.out.println("|            1. Tìm theo tên                   |");
+        System.out.println("|            2. Tìm theo mã                    |");
+        System.out.println("|            3. Quay lại                       |");
+        System.out.println(" ----------------------------------------------");
+        String epkieu;
+        do {
+            System.out.print("Vui lòng chọn (1-3)  : ");
+            epkieu=scanner.nextLine();
+
+        }while(Xulingoaile.Kiemtra(epkieu)==false||Integer.parseInt(epkieu) < 0 || Integer.parseInt(epkieu) >3);
+        return Integer.parseInt(epkieu);
+    }
+
     private void TieuDeChucNang(){
-        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                           CHỨC NĂNG QUẢN LÝ KHÁCH HÀNG                                                                                ║");
+        System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                           CHỨC NĂNG QUẢN LÝ KHÁCH HÀNG                                                                                   ║");
     }
 
     private void HienThiDanhSach(List<KhachHang> dsKh){
-        System.out.println("║                                DANH SÁCH KHÁCH HÀNG                                                                                   ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ MÃ KH |            TÊN KH            |    SỐ ĐIỆN THOẠI   |        ĐỊA CHỈ                                                            ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║                                DANH SÁCH KHÁCH HÀNG                                                                                      ║");
+        System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║ MÃ KH |            TÊN KH            |    SỐ ĐIỆN THOẠI   |        ĐỊA CHỈ        ╢ ");
+        System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
 
         for (KhachHang kh : dsKh)
         {
@@ -77,13 +108,13 @@ public class QLKhachHang {
     }
 
     private void HienThiChiTiet(KhachHang kh){
-        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                               CHI TIẾT KHÁCH HÀNG                                                                                     ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ MÃ KH |            TÊN KH            |    SỐ ĐIỆN THOẠI   |        ĐỊA CHỈ                                                            ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                               CHI TIẾT KHÁCH HÀNG                                                                                         ║");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║ MÃ KH |            TÊN KH            |    SỐ ĐIỆN THOẠI   |        ĐỊA CHỈ                                                                ║");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         System.out.println(kh.ToString());
-        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
     private void Them(){
@@ -93,7 +124,7 @@ public class QLKhachHang {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                                  THÊM KHÁCH HÀNG                                                                                      ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             ds = DocFile();
             KhachHang kh = new KhachHang();
@@ -122,9 +153,10 @@ public class QLKhachHang {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                                   SỬA KHÁCH HÀNG                                                                                      ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             ds = DocFile();
+
             System.out.print("Nhập mã khách hàng:");
             String maKh = Scan.next();
             boolean kt = false;
@@ -168,7 +200,7 @@ public class QLKhachHang {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                                   XÓA KHÁCH HÀNG                                                                                      ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
 
             ds = DocFile();
@@ -214,7 +246,7 @@ public class QLKhachHang {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                              TÌM THEO MÃ KHÁCH HÀNG                                                                                   ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
 
             ds = DocFile();
@@ -249,7 +281,7 @@ public class QLKhachHang {
             hienThi.TieuDe();
             TieuDeChucNang();
             System.out.println("║                              TÌM THEO TÊN KHÁCH HÀNG                                                                                  ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
 
             ds = DocFile();
@@ -270,9 +302,9 @@ public class QLKhachHang {
                 System.out.println("Không tìm thấy khách hàng cần tìm!");
             }
             else {
-                System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════╗");
+                System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
                 HienThiDanhSach(dsTimKiem);
-                System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+                System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             }
 
             System.out.print("Bạn có muốm tiếp tục chức năng này không? (y/n):");

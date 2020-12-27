@@ -55,9 +55,9 @@ public class QLMatHang {
             TieuDeChucNang();
             ds = DocFile();
             HienThiDanhSach(ds);
-            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
-            System.out.println("║1. Thêm, 2. Sửa, 3. Xóa, 4. Tìm 5. Menu chính, 6. Thoát                                                      ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+            System.out.println("║1. Thêm, 2. Sửa, 3. Xóa, 4. Tìm 5. Menu chính, 6. Thoát                                                                                ║");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print("Chọn chức năng: ");
             chucNang = Scan.nextInt();
             switch (chucNang) {
@@ -81,7 +81,10 @@ public class QLMatHang {
                                 TimTheoMa();
                                 break;
                             case 3:
-                                TimTheoLoai();
+
+                                System.out.print("Nhập loại mặt hàng(nữ/nam):");
+                              String  loaimathang = Scan.next();
+                                TimTheoLoai(loaimathang);
                                 break;
                             case 4:
                                 TimTheoSize();
@@ -108,15 +111,15 @@ public class QLMatHang {
     }
 
     private void TieuDeChucNang() {
-        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║                                       CHỨC NĂNG QUẢN LÝ MẶT HÀNG                                                                      ║");
     }
 
     private void HienThiDanhSach(List<MatHang> dsmh) {
         System.out.println("║                                          DANH SÁCH MẶT HÀNG                                                                           ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ MÃ MH |        TÊN MH       |           CÔNG DỤNG           |   GIÁ BÁN    |   SỐ LƯỢNG  |  SIZE  |                            ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║ MÃ MH |        TÊN MH       |           Loại giầy          |   GIÁ BÁN    |   SỐ LƯỢNG  |  SIZE                                       ║");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         for (MatHang mh : dsmh) {
             System.out.println(mh.ToString());
         }
@@ -318,7 +321,7 @@ public class QLMatHang {
 
         } while (!luachon);
     }
-    private void TimTheoLoai() {
+    private void TimTheoLoai( String loaimathang) {
         boolean luachon = false;
         do {
             hienThi.XoaManHinh();
@@ -330,8 +333,7 @@ public class QLMatHang {
 
             ds = DocFile();
 
-            System.out.print("Nhập loại mặt hàng(nữ/nam):");
-            String loaimathang = Scan.next();
+
             boolean kt = false;
             List<MatHang> dsTimKiem = new ArrayList<MatHang>();
             for (MatHang mh : ds) {
@@ -373,7 +375,7 @@ public class QLMatHang {
             boolean kt = false;
             List<MatHang> dsTimKiem = new ArrayList<MatHang>();
             for (MatHang mh : ds) {
-                if(size==mh.getDonvitinh()) {
+                if(size.equals(mh.getDonvitinh())) {
                     dsTimKiem.add(mh);
                     kt = true;
                 }

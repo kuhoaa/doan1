@@ -46,9 +46,9 @@ public class QLHoaDonNhap {
             ds = DocFile();
             dsct = DocFileChiTiet();
             HienThiDanhSach(ds);
-            System.out.println("╟───────────────────────────────────────────────────────────────────────────╢");
+            System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
             System.out.println("║1. Thêm, 2. Sửa, 3. Xóa, 4. Tìm theo mã, 5. Tìm theo tên nhà cung cấp, 6. Menu chính, 7. Thoát                            ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print("Chọn chức năng: ");
             chucNang = Scan.nextInt();
             switch (chucNang) {
@@ -87,8 +87,8 @@ public class QLHoaDonNhap {
         System.out.println("╟───────────────────────────────────────────────────────────────────────────╢");
         for (HoaDonNhap hdn : dshdn) {
             hdn.HienThi();
-            System.out.println("╟───────────────────────────────────────────────────────────────────────────╢");
-            System.out.println("║     MÃ CT         |    MÃ HÓA ĐƠN   |    MÃ MẶT HÀNG   |   SỐ LƯỢNG   |       SIZE     |                          ║");
+            System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+            System.out.println("║     MÃ CT         |    MÃ HÓA ĐƠN   |    MÃ MẶT HÀNG   |   SỐ LƯỢNG   |       SIZE     |                                 ║");
 
             for (CTHDN cthdn : dsct) {
                 if (cthdn.getHDN().contains(hdn.getMaHDN())) {
@@ -96,7 +96,7 @@ public class QLHoaDonNhap {
                 }
             }
         }
-        System.out.println("╚═══════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
     private void Them() {
         boolean luachon = false;

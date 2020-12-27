@@ -31,6 +31,7 @@ public class DoAn1 {
         ThongKe thongKe = new ThongKe();
         Scanner Scan = new Scanner(System.in);
         do{
+
             switch (chucnang)
             {
                 case 0:
