@@ -73,12 +73,12 @@ public class ThongKe {
         boolean kt = true;
         do {
             try {
-
                 System.out.print("nhập ngày cần thống kê:");
                 String ngayTK = scan.next();
                 scan.nextLine();
                 x = new SimpleDateFormat("dd/MM/yyyy").parse(ngayTK);
                 Date dateNow = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+                kt=true;
                 if (dateNow.before(x)) {
                     System.out.println("Lỗi: Ngày nhập không được lớn hơn ngày hiện tại");
                     kt = false;
