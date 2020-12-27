@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 public class HoaDonXuat {
     private String _maHDX;
     private String _maNV;
-    private String _tenKH;
+    private String _maKH;
     private Date _ngayxuat;
     private SimpleDateFormat nt = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -34,10 +34,10 @@ public class HoaDonXuat {
 
     }
 
-    public HoaDonXuat(String _maHDX, String _maNV, String _tenKH, Date _ngayxuất) {
+    public HoaDonXuat(String _maHDX, String _maNV, String _maKH, Date _ngayxuất) {
         this._maHDX = _maHDX;
         this._maNV = _maNV;
-        this._tenKH = _tenKH;
+        this._maKH = _maKH;
         this._ngayxuat = _ngayxuất;
     }
 
@@ -57,12 +57,12 @@ public class HoaDonXuat {
         this._maNV = _maNV;
     }
 
-    public String getTenKH() {
-        return _tenKH;
+    public String getmaKH() {
+        return _maKH;
     }
 
-    public void setTenKH(String _tenKH) {
-        this._tenKH = _tenKH;
+    public void setmaKH(String _tenKH) {
+        this._maKH = _tenKH;
     }
 
     public Date getNgayxuat() {
@@ -133,13 +133,35 @@ public class HoaDonXuat {
         } while (!(kt));
         do {
             kt = true;
-            System.out.print("nhập tên khách hàng:");
-            this._tenKH = scan.nextLine();
-            if (kt && this._tenKH.length() > 30) {
-                System.out.println("Lỗi: tên khách hàng phải nhỏ hơn 30 kí tự");
+            System.out.print("nhập mã khách hàng:");
+            this._maKH = scan.nextLine();
+            if (("").contains(this._maKH)) {
+                System.out.println("Lỗi: Mã khách hàng không được để trống");
                 kt = false;
             }
+
+
+            if (kt && !Pattern.matches("[K]{1}[H]{1}[0-9]{5}", this._maKH)) {
+                System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi KH");
+                kt = false;
+            }
+            if (kt) {
+                List<KhachHang> kh = DocFilekh();
+                kt = false;
+                for (KhachHang mh : kh) {
+                    if (mh.getMaKhachHang ().contains(this._maKH)){
+                        kt = true;
+                        System.out.println(mh._maKhachHang);
+                        break;
+                    }
+                }
+                if (kt == false) {
+                    System.out.println("Lỗi: mã khách hàng không tồn tại, vui lòng nhập lại");
+                }
+            }
         } while (!(kt));
+
+
         do {
             try {
                 kt = true;
@@ -190,11 +212,31 @@ public class HoaDonXuat {
 
         do {
             kt = true;
-            System.out.print("nhập tên khách hàng :");
-            this._tenKH = scan.nextLine();
-            if (kt && this._tenKH.length() > 30) {
-                System.out.println("Lỗi: tên khách hàng phải nhỏ hơn 30 kí tự");
+            System.out.print("nhập mã khách hàng:");
+            this._maKH = scan.nextLine();
+            if (("").contains(this._maKH)) {
+                System.out.println("Lỗi: Mã khách hàng không được để trống");
                 kt = false;
+            }
+
+
+            if (kt && !Pattern.matches("[K]{1}[H]{1}[0-9]{5}", this._maKH)) {
+                System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi KH");
+                kt = false;
+            }
+            if (kt) {
+                List<KhachHang> kh = DocFilekh();
+                kt = false;
+                for (KhachHang mh : kh) {
+                    if (mh.getMaKhachHang ().contains(this._maKH)){
+                        kt = true;
+                        System.out.println(mh._maKhachHang);
+                        break;
+                    }
+                }
+                if (kt == false) {
+                    System.out.println("Lỗi: mã khách hàng không tồn tại, vui lòng nhập lại");
+                }
             }
         } while (!(kt));
         do {
@@ -219,7 +261,7 @@ public class HoaDonXuat {
     public String ToString() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = dateFormat.format(this._ngayxuat);
-        return "║" + String.format("%-7s", this._maHDX) + "|" + String.format("%-7s", this._maNV) + "|" + String.format("%-30s", this._tenKH) + "|" + strDate + "║";
+        return "║" + String.format("%-7s", this._maHDX) + "|" + String.format("%-7s", this._maNV) + "|" + String.format("%-30s", this._maKH) + "|" + strDate + "║";
     }
 
     public void hienthi() {
@@ -227,7 +269,7 @@ public class HoaDonXuat {
         String strDate = dateFormat.format(this._ngayxuat);
         System.out.println("║ Mã hóa đơn  : " + String.format("%-112s", this._maHDX) + "║");
         System.out.println("║ Mã nhân viên: " + String.format("%-112s", this._maNV) + "║");
-        System.out.println("║ Tên khách hàng: " + String.format("%-110s", this._tenKH) + "║");
+        System.out.println("║ Mã khách hàng: " + String.format("%-110s", this._maKH) + "║");
         System.out.println("║ Ngày xuất: " + String.format("%-115s", strDate) + "║");
         System.out.println("║ CHI TIẾT HÓA ĐƠN: " + String.format("%-108s", "") + "║");
     }
@@ -245,6 +287,33 @@ public class HoaDonXuat {
                 String[] array = line.split(Pattern.quote("|"));
                 NhanVien nv = new NhanVien(array[0], array[1], array[2], array[3], array[4]);
                 ds.add((NhanVien) nv);
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
+        return ds;
+    }
+
+
+    private List<KhachHang> DocFilekh() {
+        List<KhachHang> ds = new ArrayList<KhachHang>();
+        String fileName = "khachhang.txt";
+        String line = null;
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] array = line.split(Pattern.quote("|"));
+                //địa chỉ không bắt nhập
+                if (array.length == 4) {
+                    KhachHang kh = new KhachHang(array[0], array[1], array[2], array[3]);
+                    ds.add((KhachHang) kh);
+                } else {
+                    KhachHang kh = new KhachHang(array[0], array[1], array[2], "");
+                    ds.add((KhachHang) kh);
+                }
             }
             bufferedReader.close();
         } catch (FileNotFoundException ex) {

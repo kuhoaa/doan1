@@ -327,7 +327,7 @@ public class QLHoaDonXuat {
             boolean kt = false;
             List<HoaDonXuat> dsTimKiem = new ArrayList<HoaDonXuat>();
             for (HoaDonXuat hd : ds) {
-                if (hd.getTenKH().contains(tenKH)) {
+                if (hd.getmaKH().contains(tenKH)) {
                     dsTimKiem.add(hd);
                     kt = true;
                 }
@@ -377,7 +377,7 @@ public class QLHoaDonXuat {
                 if (mh.getMaHDX() != "") {
                     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     String strDate = dateFormat.format(mh.getNgayxuat());
-                    String content = mh.getMaHDX() + "|" + mh.getMaNV() + "|" + mh.getTenKH() + "|" + strDate;
+                    String content = mh.getMaHDX() + "|" + mh.getMaNV() + "|" + mh.getmaKH() + "|" + strDate;
                     f.format(content + "\r\n", null);
                 }
             }

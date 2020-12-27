@@ -76,13 +76,13 @@ public class KhachHang {
             System.out.print("Nhập mã khách hàng:");
             this._maKhachHang = Scan.nextLine();
 
-            //kt mã khách hàng không được rỗng
+
             if(("").contains(this._maKhachHang)){
                 System.out.println("Lỗi: Mã khách hàng không được để trống");
                 kt = false;
             }
 
-            //kt mã khách hàng đúng cú pháp
+
             if(kt && !Pattern.matches("[K]{1}[H]{1}[0-9]{5}",this._maKhachHang)){
                 System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi KH");
                 kt = false;
