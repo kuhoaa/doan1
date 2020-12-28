@@ -89,14 +89,18 @@ public class QLHoaDonNhap {
             hdn.HienThi();
             System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
             System.out.println("║     MÃ CT         |    MÃ HÓA ĐƠN   |    MÃ MẶT HÀNG   |   SỐ LƯỢNG   |       SIZE     |                                 ║");
+            System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
 
             for (CTHDN cthdn : dsct) {
                 if (cthdn.getHDN().contains(hdn.getMaHDN())) {
                     System.out.println(cthdn.ToString2());
                 }
+
             }
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         }
-        System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
     private void Them() {
         boolean luachon = false;
@@ -321,14 +325,14 @@ public class QLHoaDonNhap {
             System.out.println("");
             ds = DocFile();
 
-            System.out.print("Nhập tên nhà cung cấp:");
-            String tenNCC = Scan.next();
+            System.out.print("Nhập mã nhà cung cấp:");
+            String macc = Scan.next();
             boolean kt = false;
             List<HoaDonNhap> dsTimKiem = new ArrayList<HoaDonNhap>();
 
             for (HoaDonNhap hd : ds) {
 
-                if (hd.getTenNCC().toLowerCase().contains(tenNCC.toLowerCase())) {
+                if (hd.get_mancc().toLowerCase().contains(macc.toLowerCase())) {
                     dsTimKiem.add(hd);
 
                     kt = true;
@@ -384,7 +388,7 @@ public class QLHoaDonNhap {
                 if (mh.getMaHDN() != "") {
                     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     String strDate = dateFormat.format(mh.getNgaynhap());
-                    String content = mh.getMaHDN() + "|" + mh.getMaNV() + "|" + mh.getTenNCC() + "|" + strDate;
+                    String content = mh.getMaHDN() + "|" + mh.getMaNV() + "|" + mh.get_mancc() + "|" + strDate;
                     f.format(content + "\r\n", null);
                 }
             }

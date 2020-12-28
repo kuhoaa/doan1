@@ -269,6 +269,6 @@ public class MatHang {
             }
 
     public String ToString() {
-        return "║" + String.format("%-7s", this._maMatHang) + "|" + String.format("%-21s", this._tenMatHang) + "|" + String.format("%-15s", this._congdung) + "|" + String.format("%-16s", Integer.toString(this._giaban)) +"|"+ String.format("%-12s", Integer.toString(this._soluong)) + "|" + String.format("%-18s", this._donvitinh) +"|"+String.format("%-40s", "")+ "║";
+        return "║" + String.format("%-7s", this._maMatHang) + "|" + String.format("%-21s", this._tenMatHang) + "|" + String.format("%-30s", this._congdung) + "|" + String.format("%-16s", Integer.toString(this._giaban)) +"|"+ String.format("%-12s", Integer.toString(this._soluong)) + "|" + String.format("%-18s", this._donvitinh) +"|"+String.format("%-25s", "")+ "║";
     }
 }

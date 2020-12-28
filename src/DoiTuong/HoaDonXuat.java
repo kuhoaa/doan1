@@ -328,7 +328,7 @@ public class HoaDonXuat {
     public String ToString() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = dateFormat.format(this._ngayxuat);
-        return "║" + String.format("%-7s", this._maHDX) + "|" + String.format("%-7s", this._maNV) + "|" + String.format("%-30s", this._maKH) + "|"+ String.format("%-30s", this._tenKH) + "|" + strDate + "║";
+        return "║" + String.format("%-7s", this._maHDX) + "|" + String.format("%-7s", this._maNV) + "|" + String.format("%-31s", this._maKH) + "|"+ String.format("%-30s", this._tenKH) + "|" + strDate + "║";
     }
 
     public void hienthi() {
@@ -336,7 +336,7 @@ public class HoaDonXuat {
         String strDate = dateFormat.format(this._ngayxuat);
         System.out.println("║ Mã hóa đơn  : " + String.format("%-112s", this._maHDX) + "║");
         System.out.println("║ Mã nhân viên: " + String.format("%-112s", this._maNV) + "║");
-        System.out.println("║ Mã khách hàng: " + String.format("%-110s", this.getmaKH())  + "║");
+        System.out.println("║ Mã khách hàng: " + String.format("%-111s", this.getmaKH())  + "║");
         System.out.println("║ Tên khách hàng: " + String.format("%-110s",this._tenKH) + "║");
         System.out.println("║ Ngày xuất: " + String.format("%-115s", strDate) + "║");
         System.out.println("║ CHI TIẾT HÓA ĐƠN: " + String.format("%-108s", "") + "║");

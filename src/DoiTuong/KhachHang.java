@@ -206,7 +206,7 @@ public class KhachHang {
     }
 
     public String ToString(){
-        return "║"  + String.format("%-7s", this._maKhachHang) + "|"+ String.format("%-30s", this._tenKhacHhang)+"|"+ String.format("%-20s", this._soDienThoai) + "|"+ String.format("%-23s", this._diaChi) +"|"+String.format("%-51s", "")+"║";
+        return "║"  + String.format("%-7s", this._maKhachHang) + "|"+ String.format("%-30s", this._tenKhacHhang)+"|"+ String.format("%-20s", this._soDienThoai) + "|"+ String.format("%-23s", this._diaChi) +"|"+String.format("%-54s", "")+"║";
     }
 }
 

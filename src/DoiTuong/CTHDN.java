@@ -112,7 +112,7 @@ public class CTHDN {
                 for (MatHang mh : ds) {
                     if (mh.getMaMatHang().contains(this._maMH)) {
                         kt = true;
-                        System.out.println(mh.getTenMatHang());
+                        System.out.println(mh.getTenMatHang()+" SIZE "+mh.getDonvitinh());
                         break;
                     }
                 }
@@ -144,7 +144,7 @@ public class CTHDN {
                 for (MatHang mh : ds) {
                     if (this._donvitinh.contains(mh.getDonvitinh()) && this._maMH.equals(mh.getMaMatHang())) {
                         kt = true;
-                        System.out.println(mh.getTenMatHang());
+                        System.out.println("Thành công");
                         break;
                     }
                 }

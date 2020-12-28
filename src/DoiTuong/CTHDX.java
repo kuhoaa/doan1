@@ -181,7 +181,7 @@ public int sotiengiam;
                 for (MatHang mh : ds) {
                     if (this._donvitinh.contains(mh.getDonvitinh()) && this._maMH.equals(mh.getMaMatHang())) {
                         kt = true;
-                        System.out.println(mh.getTenMatHang());
+                        System.out.println("tên giày :"+mh.getTenMatHang()+" loại : "+mh.getCongdung()+" Size"+mh.getDonvitinh());
                         break;
                     }
                 }

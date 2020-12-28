@@ -118,7 +118,7 @@ public class QLMatHang {
     private void HienThiDanhSach(List<MatHang> dsmh) {
         System.out.println("║                                          DANH SÁCH MẶT HÀNG                                                                           ║");
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ MÃ MH |        TÊN MH       |           Loại giầy          |   GIÁ BÁN    |   SỐ LƯỢNG  |  SIZE                                       ║");
+        System.out.println("║ MÃ MH |        TÊN MH       |           Loại giầy          |   GIÁ NHẬP   |   SỐ LƯỢNG  |  SIZE                                       ║");
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         for (MatHang mh : dsmh) {
             System.out.println(mh.ToString());
@@ -129,7 +129,7 @@ public class QLMatHang {
         System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║                               CHI TIẾT MẶT HÀNG                                                                                       ║");
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ MÃ MH |        TÊN MH       |   Loại giày   |   GIÁ BÁN      |  SỐ LƯỢNG  |         Size  |                                           ║");
+        System.out.println("║ MÃ MH |        TÊN MH       |   Loại giày   |   GIÁ Nhập     |  SỐ LƯỢNG  |         Size  |                                           ║");
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         System.out.println(mh.ToString());
         System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");

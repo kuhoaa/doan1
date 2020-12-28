@@ -7,6 +7,11 @@ package DoiTuong;
 
 import GiaoDien.QLNhaCungCap;
 import GiaoDien.QLNhanVien;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +30,8 @@ public class HoaDonNhap {
 
     private String _maHDN;
     private String _maNV;
-    private String _tenNCC;
+    private String _mancc;
+    ;
     private Date _ngaynhap;
     private SimpleDateFormat nt = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -33,10 +39,10 @@ public class HoaDonNhap {
 
     }
 
-    public HoaDonNhap(String maHDN, String maNV, String tenNCC, Date ngaynhap) {
+    public HoaDonNhap(String maHDN, String maNV, String _mancc, Date ngaynhap) {
         this._maHDN = maHDN;
         this._maNV = maNV;
-        this._tenNCC = tenNCC;
+        this._mancc = _mancc;
         this._ngaynhap = ngaynhap;
     }
 
@@ -45,7 +51,7 @@ public class HoaDonNhap {
         sc = hdn.split("|");
         this._maHDN = sc[0];
         this._maNV = sc[1];
-        this._tenNCC = sc[2];
+        this._mancc = sc[2];
         try {
             this._ngaynhap = nt.parse(sc[3]);
         } catch (ParseException ex) {
@@ -69,12 +75,12 @@ public class HoaDonNhap {
         this._maNV = maNV;
     }
 
-    public String getTenNCC() {
-        return _tenNCC;
+    public String get_mancc() {
+        return _mancc;
     }
 
-    public void setTenNCC(String tenNCC) {
-        this._tenNCC = tenNCC;
+    public void set_mancc(String _mancc) {
+        this._mancc = _mancc;
     }
 
     public Date getNgaynhap() {
@@ -127,30 +133,46 @@ public class HoaDonNhap {
             this._maNV = scan.nextLine();
             if (kt && !Pattern.matches("[N]{1}[V]{1}[0-9]{5}", this._maNV)) {
                 System.out.println("Lỗi: Mã nhân viên nhập phải có 7 kí tự và bắt đầu bằng NV");
+
                 kt = false;
             } else {
                 if (qlnv.TimNV_Ma(_maNV) == null) {
                     System.out.println("Lỗi: Mã nhân viên chưa tồn tại");
                     kt = false;
                 }
+
             }
         } while (!(kt));
-        QLNhaCungCap qlncc = new QLNhaCungCap();
+
         do {
             kt = true;
-            System.out.print("nhập tên nhà cung cấp:");
-            this._tenNCC = scan.nextLine();
-            if (kt && this._tenNCC.length() > 50) {
-                System.out.println("Lỗi: tên nhà cung cấp phải nhỏ hơn 50 kí tự");
+            System.out.print("nhập mã Nhà cung cấp :");
+            this._mancc = scan.nextLine();
+            if(kt && !Pattern.matches("[N]{1}[C]{1}[C]{1}[0-9]{4}",this._mancc)){
+                System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi CC");
                 kt = false;
-            } else {
-                if (qlncc.TimNV_Ten(_tenNCC) == null) {
-                    System.out.println("Lỗi: Tên nhà cung cấp chưa tồn tại");
-                    kt = false;
-
+            }
+            if (kt) {
+//                    List<MatHang> ds = new ArrayList<MatHang>();//lí do
+                List<NhaCungCap> ds = DocFile();
+                kt = false;
+                for (NhaCungCap mh : ds) {
+                    if (mh.getMancc().contains(this._mancc)) {
+                        kt = true;
+                        System.out.println("tên ứng với mã nhà cung cấp là :"+mh._tenncc);
+                        break;
+                    }
+                }
+                if (kt == false) {
+                    System.out.println("Lỗi: mã mặt hàng không tồn tại");
                 }
             }
         } while (!(kt));
+
+
+
+
+
         do {
             try {
                 kt = true;
@@ -200,30 +222,39 @@ public class HoaDonNhap {
             }
 
         } while (!(kt));
-         QLNhaCungCap qlncc = new QLNhaCungCap();
+
         do {
             kt = true;
-            System.out.print("nhập tên nhà cung cấp:");
-            this._tenNCC = scan.nextLine();
-            if (kt && this._tenNCC.length() > 50) {
-                System.out.println("Lỗi: tên nhà cung cấp phải nhỏ hơn 50 kí tự");
+            System.out.print("nhập mã Nhà cung cấp :");
+            this._mancc = scan.nextLine();
+            if(kt && !Pattern.matches("[N]{1}[C]{1}[C]{1}[0-9]{4}",this._mancc)){
+                System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi CC");
                 kt = false;
             }
-            else {
-                if (qlncc.TimNV_Ten(_tenNCC) == null) {
-                    System.out.println("Lỗi: Tên nhà cung cấp chưa tồn tại");
-                    kt = false;
-
+            if (kt) {
+//                    List<MatHang> ds = new ArrayList<MatHang>();//lí do
+                List<NhaCungCap> ds = DocFile();
+                kt = false;
+                for (NhaCungCap mh : ds) {
+                    if (mh.getMancc().contains(this._mancc)) {
+                        kt = true;
+                        System.out.println("tên ứng với mã nhà cung cấp là :"+mh._tenncc);
+                        break;
+                    }
+                }
+                if (kt == false) {
+                    System.out.println("Lỗi: mã mặt hàng không tồn tại");
                 }
             }
         } while (!(kt));
+
         return this;
     }
 
     public String ToString() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = dateFormat.format(this._ngaynhap);
-        return "║" + String.format("%-7s", this._maHDN) + "|" + String.format("%-7s", this._maNV) + "|" + String.format("%-30s", this._tenNCC) + "|" + strDate + "║";
+        return "║" + String.format("%-7s", this._maHDN) + "|" + String.format("%-7s", this._maNV) + "|" + String.format("%-30s", this._mancc) + "|" + strDate + "║";
     }
 
     public void HienThi() {
@@ -231,9 +262,29 @@ public class HoaDonNhap {
         String strDate = dateFormat.format(this._ngaynhap);
         System.out.println("║ Mã hóa đơn  : " + String.format("%-107s", this._maHDN) + "║");
         System.out.println("║ Mã nhân viên: " + String.format("%-107s", this._maNV) + "║");
-        System.out.println("║ Nhà cung cấp: " + String.format("%-107s", this._tenNCC) + "║");
+        System.out.println("║ Nhà cung cấp: " + String.format("%-107s", this._mancc) + "║");
         System.out.println("║ Ngày nhập   : " + String.format("%-107s", strDate) + "║");
         System.out.println("║ CHI TIẾT HÓA ĐƠN: " + String.format("%-103s", "") + "║");
     }
 
+
+    private List<NhaCungCap> DocFile() {
+        List<NhaCungCap> ds = new ArrayList<NhaCungCap>();
+        String fileName = "NhaCungCap.txt";
+        String line = null;
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] array = line.split(Pattern.quote("|"));
+                NhaCungCap ncc = new NhaCungCap(array[0], array[1], array[2], array[3]);
+                ds.add((NhaCungCap) ncc);
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
+        return ds;
+    }
 }
