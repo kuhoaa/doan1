@@ -225,7 +225,7 @@ public class CTHDN {
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] array = line.split(Pattern.quote("|"));
-                MatHang mh = new MatHang(array[0], array[1], array[2], Integer.parseInt(array[3]), Integer.parseInt(array[4]), array[5]);
+                MatHang mh = new MatHang(array[0], array[1], array[2], Integer.parseInt(array[3]), Integer.parseInt(array[4]), array[5],Integer.parseInt(array[6]));
                 ds.add((MatHang) mh);
             }
             bufferedReader.close();

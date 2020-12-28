@@ -201,26 +201,19 @@ public class HoaDonNhap {
 
             kt = true;
             scan.nextLine();
-            //hiển thị dữ liệu cũ ra
-            System.out.print("nhập mã nhân viên nhập '("+ this._maNV +")':");
-            //khai báo 1 biến mới chứa dữ liệu mới
-            String maNVMoi = scan.nextLine();
-            //kiểm tra nếu ko nhập gì thì bỏ qua
-            if(!"".contains(maNVMoi))
-            {
-                //nếu nhập thì thay dữ liệu cũ bằng dữ liệu mới
-                this._maNV = maNVMoi;
-                if (kt && !Pattern.matches("[N]{1}[V]{1}[0-9]{5}", this._maNV)) {
-                    System.out.println("Lỗi: Mã nhân viên nhập phải có 7 kí tự và bắt đầu bằng NV");
-                    kt = false;
-                } else {
-                    if (qlnv.TimNV_Ma(_maNV) == null) {
-                        System.out.println("Lỗi: Mã nhân viên chưa tồn tại");
-                        kt = false;
-                    }
-                }
-            }
+            System.out.print("nhập mã nhân viên nhập:");
+            this._maNV = scan.nextLine();
+            if (kt && !Pattern.matches("[N]{1}[V]{1}[0-9]{5}", this._maNV)) {
+                System.out.println("Lỗi: Mã nhân viên nhập phải có 7 kí tự và bắt đầu bằng NV");
 
+                kt = false;
+            } else {
+                if (qlnv.TimNV_Ma(_maNV) == null) {
+                    System.out.println("Lỗi: Mã nhân viên chưa tồn tại");
+                    kt = false;
+                }
+
+            }
         } while (!(kt));
 
         do {
@@ -228,7 +221,7 @@ public class HoaDonNhap {
             System.out.print("nhập mã Nhà cung cấp :");
             this._mancc = scan.nextLine();
             if(kt && !Pattern.matches("[N]{1}[C]{1}[C]{1}[0-9]{4}",this._mancc)){
-                System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi CC");
+                System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi NCC");
                 kt = false;
             }
             if (kt) {
@@ -247,6 +240,8 @@ public class HoaDonNhap {
                 }
             }
         } while (!(kt));
+
+
 
         return this;
     }

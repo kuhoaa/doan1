@@ -5,6 +5,7 @@
  */
 package GiaoDien;
 
+import DoiTuong.CTHDX;
 import DoiTuong.MatHang;
 import DoiTuong.Xulingoaile;
 import HoTro.HienThi;
@@ -118,7 +119,7 @@ public class QLMatHang {
     private void HienThiDanhSach(List<MatHang> dsmh) {
         System.out.println("║                                          DANH SÁCH MẶT HÀNG                                                                           ║");
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ MÃ MH |        TÊN MH       |           Loại giầy          |   GIÁ NHẬP   |   SỐ LƯỢNG  |  SIZE                                       ║");
+        System.out.println("║ MÃ MH |        TÊN MH       |           Loại giầy          | GIÁ NHẬP(VND)|   SỐ LƯỢNG  |  SIZE       |Tổng tiền(VND)                 ║");
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         for (MatHang mh : dsmh) {
             System.out.println(mh.ToString());
@@ -129,7 +130,7 @@ public class QLMatHang {
         System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║                               CHI TIẾT MẶT HÀNG                                                                                       ║");
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ MÃ MH |        TÊN MH       |   Loại giày   |   GIÁ Nhập     |  SỐ LƯỢNG  |         Size  |                                           ║");
+        System.out.println("║ MÃ MH |        TÊN MH       |   Loại giày   |  GIÁ Nhập(VND) |  SỐ LƯỢNG  |         Size  |            |Tổng tiền(VND)                ║");
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         System.out.println(mh.ToString());
         System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
@@ -453,7 +454,7 @@ public class QLMatHang {
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] array = line.split(Pattern.quote("|"));
-                MatHang mh = new MatHang(array[0], array[1], array[2], Integer.parseInt(array[3]), Integer.parseInt(array[4]), array[5]);
+                MatHang mh = new MatHang(array[0], array[1], array[2], Integer.parseInt(array[3]), Integer.parseInt(array[4]), array[5],Integer.parseInt(array[6]));
                 ds.add((MatHang) mh);
             }
             bufferedReader.close();
@@ -475,5 +476,24 @@ public class QLMatHang {
             f.close();
         } catch (FileNotFoundException e) {
         }
+    }
+    public List<MatHang> DocFileChiTiet() {
+        List<MatHang> ds = new ArrayList<MatHang>();
+        String fileName = "MatHang.txt";
+        String line = null;
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] array = line.split(Pattern.quote("|"));
+                MatHang mh = new MatHang(array[0], array[1], array[2], Integer.parseInt(array[3]), Integer.parseInt(array[4]), array[5], Integer.parseInt(array[6]));
+                ds.add((MatHang) mh);
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
+        return ds;
     }
 }

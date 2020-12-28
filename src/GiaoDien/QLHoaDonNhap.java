@@ -354,7 +354,7 @@ public class QLHoaDonNhap {
         } while (!luachon);
     }
 
-    private List<HoaDonNhap> DocFile() {
+    public List<HoaDonNhap> DocFile() {
         List<HoaDonNhap> ds = new ArrayList<HoaDonNhap>();
         String fileName = "HoaDonNhap.txt";
         String line = null;
@@ -397,7 +397,7 @@ public class QLHoaDonNhap {
         }
     }
 
-   private List<CTHDN> DocFileChiTiet() {
+   public List<CTHDN> DocFileChiTiet() {
         List<CTHDN> ds = new ArrayList<CTHDN>();
         String fileName = "CTHDN.txt";
         

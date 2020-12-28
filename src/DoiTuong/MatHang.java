@@ -22,6 +22,8 @@ public class MatHang {
     private int _giaban;
     private int _soluong;
     private String _donvitinh;
+    private  int _tt;
+
 
     public MatHang() {
         _maMatHang = " ";
@@ -32,17 +34,18 @@ public class MatHang {
         _donvitinh = " ";
     }
 
-    public MatHang(String maMatHang, String tenMatHang, String congdung, int giaban, int soluong, String donvitinh) {
+    public MatHang(String maMatHang, String tenMatHang, String congdung, int giaban, int soluong, String donvitinh,int _tt) {
         this._maMatHang = maMatHang;
         this._tenMatHang = tenMatHang;
         this._congdung = congdung;
         this._giaban = giaban;
         this._soluong = soluong;
         this._donvitinh = donvitinh;
+        this._tt =_tt;
     }
 
     public MatHang(String mh) {
-        String[] sc = new String[6];
+        String[] sc = new String[7];
         sc = mh.split("|");
         this._maMatHang = sc[0];
         this._tenMatHang = sc[1];
@@ -50,6 +53,7 @@ public class MatHang {
         this._giaban = Integer.parseInt(sc[3]);
         this._soluong = Integer.parseInt(sc[4]);
         this._donvitinh = sc[5];
+        this._tt=Integer.parseInt(sc[6]);
     }
 
     public String getMaMatHang() {
@@ -98,6 +102,14 @@ public class MatHang {
 
     public void setDonvitinh(String _donvitinh) {
         this._donvitinh = _donvitinh;
+    }
+
+    public int getTt() {
+        return _tt;
+    }
+
+    public void setTt(int _tt) {
+        this._tt = _tt;
     }
 
     public MatHang Them(List<MatHang> list) {
@@ -194,6 +206,11 @@ public class MatHang {
 
                 }
             } while (!(kt));
+
+        System.out.println("thành tiền:");
+        _tt = _soluong * _giaban;
+
+        System.out.print("số tiền nhập là" + _tt);
             return this;
         }
 
@@ -265,10 +282,14 @@ public class MatHang {
 
                     }
                 }while (!(kt));
+        System.out.println("thành tiền:");
+        _tt = _soluong * _giaban;
+
+        System.out.print("số tiền đã nhập là" + _tt);
                 return this;
             }
 
     public String ToString() {
-        return "║" + String.format("%-7s", this._maMatHang) + "|" + String.format("%-21s", this._tenMatHang) + "|" + String.format("%-30s", this._congdung) + "|" + String.format("%-16s", Integer.toString(this._giaban)) +"|"+ String.format("%-12s", Integer.toString(this._soluong)) + "|" + String.format("%-18s", this._donvitinh) +"|"+String.format("%-25s", "")+ "║";
+        return "║" + String.format("%-7s", this._maMatHang) + "|" + String.format("%-21s", this._tenMatHang) + "|" + String.format("%-30s", this._congdung) + "|" + String.format("%-14s", Integer.toString(this._giaban)) +"|"+ String.format("%-13s", Integer.toString(this._soluong)) + "|" + String.format("%-14s", this._donvitinh) +"|" + String.format("%-18s", this._tt) +String.format("%-12s", "")+ "║";
     }
 }
