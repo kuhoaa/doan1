@@ -82,11 +82,11 @@ public class NhaCungCap {
                 System.out.println("lỗi: Mã nhà cung cấp không được để trống");
                 kt=false;
             }
-             //kt mã nhà cung cấp đúng cú pháp VD: CC3456
-//            if(kt && !Pattern.matches("[C]{1}[C]{1}[0-9]{5}",this._mancc)){
-//                System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi CC");
-//                kt = false;
-//            }
+          //   kt mã nhà cung cấp đúng cú pháp VD: CC3456
+            if(kt && !Pattern.matches("[C]{1}[C]{1}[0-9]{5}",this._mancc)){
+                System.out.println("Lỗi: Mã khách hàng phải có độ dài 7 ký tự và bắt đầu bởi CC");
+                kt = false;
+            }
             //kiểm tra trùng nhau
             if(kt){
                 for(NhaCungCap ncc:list){

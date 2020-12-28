@@ -257,13 +257,8 @@ public class QLHoaDonXuat {
 
                 }
                 dsMoi.add(hdx);
-
-                for (CTHDX cthd : dsct) {
-                    if (!cthd.getMaHDX().contains(maHDX)) {
-                        dsctXoa.add(cthd);
-                    }
                 }
-            }
+
             if (!kt) {
                 System.out.println("Không tìm thấy mã hóa đơn nhập cần xóa!");
             } else {
@@ -331,7 +326,7 @@ public class QLHoaDonXuat {
             boolean kt = false;
             List<HoaDonXuat> dsTimKiem = new ArrayList<HoaDonXuat>();
             for (HoaDonXuat hd : ds) {
-                if (hd.getmaKH().contains(tenKH)) {
+                if (hd.getmaKH().toLowerCase().contains(tenKH.toLowerCase())) {
                     dsTimKiem.add(hd);
                     kt = true;
                 }

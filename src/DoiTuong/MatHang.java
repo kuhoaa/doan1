@@ -216,7 +216,7 @@ public class MatHang {
                 System.out.print("nhập loại Giày(nam/nữ):");
                 this._congdung = scan.nextLine();
 
-                if (kt && (!"nam".equals(this._congdung) && !"nữ".equals(this._congdung))) {
+                if (kt && (!"nam".equals(this._congdung.toLowerCase()) && !"nữ".equals(this._congdung.toLowerCase()))) {
                     System.out.println("Lỗi: loại giày nữ hoặc nam!");
                     kt = false;
                 }
@@ -269,6 +269,6 @@ public class MatHang {
             }
 
     public String ToString() {
-        return "║" + String.format("%-7s", this._maMatHang) + "|" + String.format("%-21s", this._tenMatHang) + "|" + String.format("%-31s", this._congdung) + "|" + String.format("%-14s", Integer.toString(this._giaban)) +"|"+ String.format("%-13s", Integer.toString(this._soluong)) + "|" + String.format("%-15s", this._donvitinh) +"|"+String.format("%-28s", "")+ "║";
+        return "║" + String.format("%-7s", this._maMatHang) + "|" + String.format("%-21s", this._tenMatHang) + "|" + String.format("%-15s", this._congdung) + "|" + String.format("%-16s", Integer.toString(this._giaban)) +"|"+ String.format("%-12s", Integer.toString(this._soluong)) + "|" + String.format("%-18s", this._donvitinh) +"|"+String.format("%-40s", "")+ "║";
     }
 }

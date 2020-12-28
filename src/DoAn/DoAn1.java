@@ -5,6 +5,7 @@
  */
 package DoAn;
 
+import DoiTuong.Xulingoaile;
 import GiaoDien.*;
 import GiaoDien.QLKhachHang;
 import java.util.Scanner;
@@ -30,44 +31,54 @@ public class DoAn1 {
         QLHoaDonXuat qLHoaDonXuat=new QLHoaDonXuat();
         ThongKe thongKe = new ThongKe();
         Scanner Scan = new Scanner(System.in);
+        String epkieu;
         do{
 
-            switch (chucnang)
+            qlchung.KhoiTao();
+            do {
+
+
+                System.out.print("Chọn chức năng(1-8): ");
+                epkieu = Scan.nextLine();
+            }while (Xulingoaile.Kiemtra(epkieu)==false||Integer.parseInt(epkieu)<0||Integer.parseInt(epkieu)>8);
+
+
+            switch (epkieu)
             {
-                case 0:
-                    qlchung.KhoiTao();
-                    chucnang = Scan.nextInt();
-                    break;
-                case 1:
+//                case 0:
+//                    qlchung.KhoiTao();
+//                    chucnang = Scan.nextInt();
+//                    break;
+                case "1":
                     qlKhachHang.KhoiTao();
                     chucnang = 0;
                     break;
-                case 2:
+                case "2":
                     qlNhaCungCap.KhoiTao();
                     chucnang = 0;
                     break;
-                case 3:
+                case "3":
                     qlNhanVien.KhoiTao();
                     chucnang=0;
                     break;
-                case 4:
+                case "4":
                     qlMatHang.KhoiTao();
                     chucnang=0;  
                     break;
-                case 5:
+                case "5":
                     qLHoaDonNhap.KhoiTao();
                     chucnang=0;  
                     break;
-                case 6:
+                case "6":
                     qLHoaDonXuat.KhoiTao();
                     chucnang=0; 
                     break;
-                case 7:
+                case "7":
                     thongKe.KhoiTao();
                     //Scan.hasNext();
                     chucnang=0;  
                     break;
-                case 8:
+                case "8":
                     qlchung.Thoat();
                     chonthoat = Scan.next();
                     if (chonthoat.equalsIgnoreCase("y"))
@@ -76,7 +87,7 @@ public class DoAn1 {
                         chucnang = 0;
                     break;
             }
-        }while(!thoat);
+        }while(!thoat||Xulingoaile.Kiemtra(epkieu)==false||Integer.parseInt(epkieu)<0||Integer.parseInt(epkieu)>8);
         System.exit(0);
     }
     

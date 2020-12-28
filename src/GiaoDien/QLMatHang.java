@@ -126,13 +126,13 @@ public class QLMatHang {
     }
 
     private void HienThiChiTiet(MatHang mh) {
-        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║                               CHI TIẾT MẶT HÀNG                                                                                       ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ MÃ MH |        TÊN MH       |   Loại giày   |   GIÁ BÁN      |  SỐ LƯỢNG  | Size  |                                           ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║ MÃ MH |        TÊN MH       |   Loại giày   |   GIÁ BÁN      |  SỐ LƯỢNG  |         Size  |                                           ║");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         System.out.println(mh.ToString());
-        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
     private void Them() {
@@ -169,8 +169,8 @@ public class QLMatHang {
             hienThi.XoaManHinh();
             hienThi.TieuDe();
             TieuDeChucNang();
-            System.out.println("║                                   SỬA MẶT HÀNG                                                                                   ║");
-            System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("║                                   SỬA MẶT HÀNG                                                                                        ║");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             ds = DocFile();
             System.out.print("Nhập mã mặt hàng:");
@@ -211,8 +211,8 @@ public class QLMatHang {
             hienThi.XoaManHinh();
             hienThi.TieuDe();
             TieuDeChucNang();
-            System.out.println("║                                   XÓA MẶT HÀNG                                                                                   ║");
-            System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("║                                   XÓA MẶT HÀNG                                                                                        ║");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             ds = DocFile();
             System.out.print("Nhập mã mặt hàng:");
@@ -300,7 +300,7 @@ public class QLMatHang {
             boolean kt = false;
             List<MatHang> dsTimKiem = new ArrayList<MatHang>();
             for (MatHang mh : ds) {
-                if (mh.getTenMatHang().contains(tenMatHang)) {
+                if (mh.getTenMatHang().toLowerCase().contains(tenMatHang.toLowerCase())) {
                     dsTimKiem.add(mh);
                     kt = true;
                 }
@@ -364,8 +364,8 @@ public class QLMatHang {
             hienThi.XoaManHinh();
             hienThi.TieuDe();
             TieuDeChucNang();
-            System.out.println("║                              TÌM THEO SIZE Giầy                                                                               ║");
-            System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("║                              TÌM THEO SIZE Giầy                                                                                       ║");
+            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
 
             ds = DocFile();
@@ -383,9 +383,9 @@ public class QLMatHang {
             if (!kt) {
                 System.out.println("Không tìm thấy mặt hàng cần tìm!");
             } else {
-                System.out.println("╔═════════════════════════════════════════════════════════════════════════════╗");
+                System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
                 HienThiDanhSach(dsTimKiem);
-                System.out.println("╚═════════════════════════════════════════════════════════════════════════════╝");
+                System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             }
 
             System.out.print("Bạn có muốm tiếp tục chức năng này không? (y/n):");

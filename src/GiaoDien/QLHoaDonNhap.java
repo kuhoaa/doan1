@@ -328,7 +328,7 @@ public class QLHoaDonNhap {
 
             for (HoaDonNhap hd : ds) {
 
-                if (hd.getTenNCC().contains(tenNCC)) {
+                if (hd.getTenNCC().toLowerCase().contains(tenNCC.toLowerCase())) {
                     dsTimKiem.add(hd);
 
                     kt = true;

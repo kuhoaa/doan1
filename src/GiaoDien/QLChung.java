@@ -30,7 +30,7 @@ public class QLChung {
 
 //        String epkieu; +""
 //      do {
-        System.out.print("Chọn chức năng(1-8): ");
+
 //        epkieu = sc.nextLine();
 //     }
 //       while (Xulingoaile.Kiemtra(epkieu)==false||Integer.parseInt(epkieu)<0||Integer.parseInt(epkieu)>8);

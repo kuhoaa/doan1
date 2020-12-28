@@ -27,9 +27,9 @@ public class CTHDX {
     private int _giaban;
     private String _donvitinh;
     private int _tt;
-    private int _KM;
+
     public CTHDX() {
-    this._KM=0;
+
     }
 
     public CTHDX(String _maCTHDX, String _maHDX, String _maMH, int _soluong, int _giaban, String _donvitinh, int _tt) {
@@ -47,11 +47,7 @@ public int sotiengiam;
         return _maCTHDX;
     }
 
-    public int get_KM() {
-        return _KM;
-    }
-public  void set_KM(int _KM)
-{       this._KM=_KM;}
+
 
     public void setMaCTHDX(String _maCTHDX) {
         this._maCTHDX = _maCTHDX;
@@ -158,9 +154,10 @@ public  void set_KM(int _KM)
             this._soluong = Integer.parseInt(scan.nextLine());
             if (this._soluong < 0) {
                 System.out.println("Lỗi số lượng phải lớn hơn 0");
+
                 kt = false;
             }
-         
+
         } while (!(kt));
         do {
             kt = true;
@@ -195,7 +192,7 @@ public  void set_KM(int _KM)
             }
         } while (!(kt));
         System.out.println("thành tiền:");
-        _tt = _soluong * _giaban-((this._KM*_tt)/100);
+        _tt = _soluong * _giaban;
 
         System.out.print("số tiền đã trả là" + _tt);
         return this;
@@ -237,11 +234,8 @@ public  void set_KM(int _KM)
             if (this._soluong < 0) {
                 System.out.println("Lỗi số lượng phải lớn hơn 0");
                 kt = false;
-            }
-            else if (this._soluong>2)
-            {
-                System.out.print("số lượng lớn hơn 2 ,nhập % chiết khấu ( nếu không chọn 0) : ");
-                sotiengiam=scan.nextInt();
+
+
 
 
             }

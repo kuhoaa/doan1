@@ -77,8 +77,8 @@ public class QLKhachHang {
         public  static  int Menu6(){
         Scanner scanner = new Scanner(System.in);
         System.out.println(" ----------------------------------------------");
-        System.out.println("|            1. Tìm theo tên                   |");
-        System.out.println("|            2. Tìm theo mã                    |");
+        System.out.println("|            1. Tìm theo Mã                    |");
+        System.out.println("|            2. Tìm theo Tên                   |");
         System.out.println("|            3. Quay lại                       |");
         System.out.println(" ----------------------------------------------");
         String epkieu;
@@ -292,7 +292,7 @@ public class QLKhachHang {
             List<KhachHang> dsTimKiem = new ArrayList<KhachHang>();
             for (KhachHang kh : ds)
             {
-                if(kh.getTenKhachHang().contains(ten)){
+                if(kh.getTenKhachHang().toLowerCase().contains(ten.toLowerCase())){
                     dsTimKiem.add(kh);
                     kt = true;
                 }

@@ -1,2 +1,4 @@
 KH00001|hòa|0889022000|phố nối B
 KH00002|thủy|0584313333|văn giang
+KH00003|trang|0981540743|ninh bình
+KH00004|Nhung|0889072002|lạc hồng

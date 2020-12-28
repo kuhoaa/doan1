@@ -230,7 +230,7 @@ public class QLNhaCungCap {
     public NhaCungCap TimNV_Ten(String ten) {
         ds = DocFile();
         for (NhaCungCap ncc : ds) {
-            if (ncc.getTenncc().contains(ten)) {
+            if (ncc.getTenncc().toLowerCase().contains(ten.toLowerCase())) {
                 return ncc;
 
             }

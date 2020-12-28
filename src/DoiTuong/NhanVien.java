@@ -123,11 +123,12 @@ public class NhanVien {
             kt=true;
             System.out.print("nhập giới tính nhân viên:");
             this._gioitinh=scan.nextLine();
+
             if(("").contains(this._gioitinh)){
                 System.out.println("Lỗi: giới tính nhân viên không được để trống");
                 kt=false;
             }
-            if(kt && (!"Nam".equals(this._gioitinh) && !"Nu".equals(this._gioitinh))){
+            if(kt && (!"nam".equals(this._gioitinh.toLowerCase()) && !"nữ".equals(this._gioitinh.toLowerCase()))){
                 System.out.println("Lỗi: Giới tính nhân viên phải là nam hoặc nữ");
                 kt=false;
                 

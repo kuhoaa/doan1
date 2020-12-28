@@ -265,7 +265,7 @@ public class QLNhanVien {
             boolean kt = false;
             List<NhanVien> dsTimKiem = new ArrayList<NhanVien>();
             for (NhanVien nv : ds) {
-                if (nv.getTenNhanVien().contains(tenNhanVien)) {
+                if (nv.getTenNhanVien().toLowerCase().contains(tenNhanVien.toLowerCase())) {
                     dsTimKiem.add(nv);
                     kt = true;
                 }
