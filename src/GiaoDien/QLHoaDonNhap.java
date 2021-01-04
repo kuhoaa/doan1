@@ -78,13 +78,13 @@ public class QLHoaDonNhap {
     }
 
     private void TieuDeChucNang() {
-        System.out.println("╔═══════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║                           CHỨC NĂNG QUẢN LÝ HÓA ĐƠN NHẬP                                                                 ║");
     }
 
     private void HienThiDanhSach(List<HoaDonNhap> dshdn) {
         System.out.println("║                                DANH SÁCH HÓA ĐƠN NHẬP                                                                    ║");
-        System.out.println("╟───────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         for (HoaDonNhap hdn : dshdn) {
             hdn.HienThi();
             System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
@@ -250,16 +250,20 @@ public class QLHoaDonNhap {
                 if (hdn.getMaHDN().contains(maHDN)) {
                     HienThiDanhSach(ds);
                     hdn.setMaHDN("");
+                    for (CTHDN cthd : dsct) {
+                    if (cthd.getHDN().contains(maHDN)) {
+                        cthd.setMaHDN("");
+                        kt=true;
+                    }
+                        dsctXoa.add(cthd);
+                    }
                     kt = true;
 
                 }
                 dsMoi.add(hdn);
 
-                for (CTHDN cthd : dsct) {
-                    if (!cthd.getHDN().contains(maHDN)) {
-                        dsctXoa.add(cthd);
-                    }
-                }
+
+
             }
             if (!kt) {
                 System.out.println("Không tìm thấy mã hóa đơn nhập cần xóa!");

@@ -77,13 +77,13 @@ public class QLHoaDonXuat {
     }
 
     private void TieuDeChucNang() {
-        System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                            CHỨC NĂNG QUẢN LÝ HÓA ĐƠN XUẤT      ║");
+        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                                            CHỨC NĂNG QUẢN LÝ HÓA ĐƠN XUẤT                                                     ║");
     }
 
     private void HienThiDanhSach(List<HoaDonXuat> hdx) {
-        System.out.println("║                                                 DANH SÁCH HÓA ĐƠN XUẤT         ║");
-        System.out.println("╟────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║                                                 DANH SÁCH HÓA ĐƠN XUẤT                                                        ║");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         for (HoaDonXuat hd : hdx) {
             hd.hienthi();
             System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
@@ -106,7 +106,7 @@ public class QLHoaDonXuat {
             hienThi.XoaManHinh();
             hienThi.TieuDe();
             TieuDeChucNang();
-            System.out.println("║                                  THÊM HÓA ĐƠN XUẤT                                                                        ║");
+            System.out.println("║                                  THÊM HÓA ĐƠN XUẤT                         ║");
             System.out.println("╚════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             ds = DocFile();
@@ -249,15 +249,26 @@ public class QLHoaDonXuat {
             List<HoaDonXuat> dsMoi = new ArrayList<HoaDonXuat>();
             List<CTHDX> dsctXoa = new ArrayList<CTHDX>();
             dsct = DocFileChiTiet();
+            ArrayList<CTHDX> li=(ArrayList<CTHDX>)dsct;
             for (HoaDonXuat hdx : ds) {
                 if (hdx.getMaHDX().contains(maHDX)) {
                     HienThiDanhSach(ds);
                     hdx.setMaHDX("");
                     kt = true;
 
+
                 }
                 dsMoi.add(hdx);
                 }
+
+            for (CTHDX cthdx :dsct) {
+                if (cthdx.getMaHDX().contains(maHDX)) {
+
+                    cthdx.setMaHDX("");
+                    kt = true;
+                }
+              dsctXoa.add(cthdx);
+            }
 
             if (!kt) {
                 System.out.println("Không tìm thấy mã hóa đơn nhập cần xóa!");

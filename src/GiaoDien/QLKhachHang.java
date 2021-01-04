@@ -123,8 +123,8 @@ public class QLKhachHang {
             hienThi.XoaManHinh();
             hienThi.TieuDe();
             TieuDeChucNang();
-            System.out.println("║                                  THÊM KHÁCH HÀNG                                                                                      ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("║                                  THÊM KHÁCH HÀNG                                                                                         ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("");
             ds = DocFile();
             KhachHang kh = new KhachHang();

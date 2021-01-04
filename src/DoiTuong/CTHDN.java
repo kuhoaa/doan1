@@ -112,7 +112,8 @@ public class CTHDN {
                 for (MatHang mh : ds) {
                     if (mh.getMaMatHang().contains(this._maMH)) {
                         kt = true;
-                        System.out.println(mh.getTenMatHang()+" SIZE "+mh.getDonvitinh());
+                        System.out.println(" MÃ :"+this._maMH+"có tên là :"+mh.getTenMatHang()+" có SIZE là"+mh.getCongdung());
+                        this._donvitinh=mh.getDonvitinh();
                         break;
                     }
                 }
@@ -131,32 +132,38 @@ public class CTHDN {
                 kt = false;
             }
         } while (!(kt));
-        do {
-            kt = true;
-            System.out.print("NHập SIZE :");
-            this._donvitinh=scan.nextLine();
 
-//            kt = false;
-
-            if (kt) {
-                List<MatHang> ds = DocFile();
-                kt = false;
-                for (MatHang mh : ds) {
-                    if (this._donvitinh.contains(mh.getDonvitinh()) && this._maMH.equals(mh.getMaMatHang())) {
-                        kt = true;
-                        System.out.println("Thành công");
-                        break;
-                    }
-                }
-                if (kt == false) {
-                    System.out.println("Lỗi: Size giày không tồn tại hoặc đã hết vui lòng nhập thêm");
-                }
-
-            }
-        } while (!(kt));
+//        do {
+//            kt = true;
+//            System.out.print("NHập SIZE :");
+//            this._donvitinh=scan.nextLine();
+//
+////            kt = false;
+//
+//            if (kt) {
+//                List<MatHang> ds = DocFile();
+//                kt = false;
+//                for (MatHang mh : ds) {
+//                    if (this._donvitinh.contains(mh.getDonvitinh()) && this._maMH.equals(mh.getMaMatHang())) {
+//                        kt = true;
+//                        System.out.println("Thành công");
+//                        break;
+//                    }
+//                }
+//                if (kt == false) {
+//                    System.out.println("Lỗi: Size giày không tồn tại hoặc đã hết vui lòng nhập thêm");
+//                }
+//
+//            }
+//        } while (!(kt));
         return this;
     }
+public  CTHDN Xoa()
+{
 
+
+    return  this;
+}
     public CTHDN Sua() {
         Scanner scan = new Scanner(System.in);
         boolean kt = true;
@@ -184,36 +191,14 @@ public class CTHDN {
                 }
             }
         } while (!(kt));
-        do {
-            kt = true;
-            System.out.print("NHập SIZE :");
-            this._donvitinh=scan.nextLine();
-
-//            kt = false;
-
-            if (kt) {
-                List<MatHang> ds = DocFile();
-                kt = false;
-                for (MatHang mh : ds) {
-                    if (this._donvitinh.contains(mh.getDonvitinh()) && this._maMH.equals(mh.getMaMatHang())) {
-                        kt = true;
-                        System.out.println(mh.getTenMatHang());
-                        break;
-                    }
-                }
-                if (kt == false) {
-                    System.out.println("Lỗi: Size giày không tồn tại hoặc đã hết vui lòng nhập thêm");
-                }
-
-            }
-        } while (!(kt));
         return this;
 
     }
 
     public String ToString2() {
-        return "║" + String.format("%-19s", this._maCTHD) + "|" + String.format("%-17s", this._maHDN) + "|" + String.format("%-18s", this._maMH) + "|" + String.format("%-14s", this._soluong) + "|" + String.format("%-23s", this._donvitinh) + "|" + String.format("%-26s", "") + "║";
+        return "║" + String.format("%-19s", this._maCTHD) + "|" + String.format("%-17s", this._maHDN) + "|" + String.format("%-18s", this._maMH) + "|" + String.format("%-14s", this._soluong) + "|" + String.format("%-16s", this._donvitinh) + "|" + String.format("%-33s", "") + "║";
     }
+
 
     public List<MatHang> DocFile() {
         List<MatHang> ds = new ArrayList<MatHang>();

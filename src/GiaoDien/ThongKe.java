@@ -15,14 +15,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
-
 /**
  *
  * @author LENOVO
@@ -40,14 +36,20 @@ public class ThongKe {
 
     public int Menu1(){
         hienThi.XoaManHinh();
-        Scanner sc = new Scanner(System.in);
-        System.out.println(" ----------------------------------------------");
-        System.out.println("|            1. doanh thu theo ngày            |");
-        System.out.println("|            2.  doanh thu                     |");
-        System.out.println("|            3. Mặt hàng bán chạy              |");
-        System.out.println("|            4. lợi nhuận                      |");
-        System.out.println("|            5. Quay lại                       |");
-        System.out.println(" ----------------------------------------------");
+        hienThi.TieuDe();
+      Scanner sc=new Scanner(System.in);
+
+        System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                                             CHỨC NĂNG                                                ║");
+        System.out.println("╟──────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║                                1: DOANH THU THEO NGÀY                                                ║");
+        System.out.println("║                                2: DOANH THU                                                          ║");
+        System.out.println("║                                3: MẶT HÀNG BÁN CHẠY                                                  ║");
+        System.out.println("║                                4: LỢI NHUẬN                                                          ║");
+        System.out.println("║                                5: QUAY LẠI                                                           ║");
+        System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+
         do {
             System.out.print("Vui lòng chọn (1-5) : ");
             epkieu=sc.nextLine();
@@ -70,33 +72,66 @@ public class ThongKe {
         }while(Xulingoaile.Kiemtra(epkieu)==false||Integer.parseInt(epkieu) < 0 || Integer.parseInt(epkieu) >3);
         return Integer.parseInt(epkieu);
     }
+    public int Menu3(){
+        hienThi.XoaManHinh();
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" ----------------------------------------------");
+        System.out.println("|            1.thống kê theo ngày              |");
+        System.out.println("|            2.thống kê theo tháng             |");
+        System.out.println("|            3. Quay lại                       |");
+        System.out.println(" ----------------------------------------------");
+        do {
+            System.out.print("Vui lòng chọn (1-3) : ");
+            epkieu=sc.nextLine();
 
+        }while(Xulingoaile.Kiemtra(epkieu)==false||Integer.parseInt(epkieu) < 0 || Integer.parseInt(epkieu) >3);
+        return Integer.parseInt(epkieu);
+    }
     public void KhoiTao() {
+        Scanner sc= new Scanner(System.in);
         int chon;
 
         do {
             chon=Menu1();
             switch (chon) {
                 case 1:
-                    thongkedoanhthu();
-                   System.out.println("ấn phím bất kì để quay lại");
+                    do {
+                        chon=Menu3();
+                        switch (epkieu) {
+                            case "1": thongkedoanhthu();
+                            System.out.println("ấn phím bất kì để quay lại");
+                            break;
+                            case "2":thongkedoanhthuthang();
+                                System.out.println("ấn phím bất kì để quay lại");
+                                break;
+                            case "3":
+                                thoat=false;
+                                break;
+                        }
+                    }while (thoat=false);
                     break;
+
                 case 2:
                     do {
                         chon=Menu2();
-                        switch (chon)
+                        switch (epkieu)
                         {
-                            case 1:
+                            case "1":
                             Tongdoanhthu();
                             scan.nextLine();
+
                             break;
-                            case 2:
+                            case "2":
                              Tongchi();
                              scan.nextLine();
-                             break;
 
+                             break;
+                            case "3":
+                                thoat=false;
+                                break;
                         }
-                    }while (chon>=1&&chon<=2);
+                    }while (thoat=false);
+                    break;
                 case 3:
                     thongkeMHBC();
                     scan.nextLine();
@@ -132,11 +167,12 @@ public class ThongKe {
         QLHoaDonXuat qLHoaDonXuat = new QLHoaDonXuat();
         List<HoaDonXuat> listHD = qLHoaDonXuat.DocFile();
         List<CTHDX> listCT = qLHoaDonXuat.DocFileChiTiet();
+        String ngayTK = null;
         boolean kt = true;
         do {
             try {
                 System.out.print("nhập ngày cần thống kê:");
-                String ngayTK = scan.next();
+              ngayTK  = scan.next();
                 scan.nextLine();
                 x = new SimpleDateFormat("dd/MM/yyyy").parse(ngayTK);
                 Date dateNow = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
@@ -165,9 +201,57 @@ public class ThongKe {
                 }
             }
         }
-        System.out.println("╟─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
 
-        System.out.print("doanh thu ngày là: " + s + " VNĐ");
+        System.out.print("doanh thu ngày "+ ngayTK+" là :" + s + " VNĐ");
+        scan.nextLine();
+    }
+    public void thongkedoanhthuthang() {
+
+
+
+        int s = 0;
+        Date x = null;
+        QLHoaDonXuat qLHoaDonXuat = new QLHoaDonXuat();
+        List<HoaDonXuat> listHD = qLHoaDonXuat.DocFile();
+        List<CTHDX> listCT = qLHoaDonXuat.DocFileChiTiet();
+        String thangTK = null;
+        boolean kt = true;
+        do {
+            try {
+                System.out.print("nhập tháng/năm cần thống kê:");
+                thangTK  = scan.next();
+                scan.nextLine();
+                x = new SimpleDateFormat("MM/yyyy").parse(thangTK);
+                Date dateNow = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+                kt = true;
+                if (dateNow.before(x)) {
+                    System.out.println("Lỗi: Ngày nhập không được lớn hơn ngày hiện tại");
+                    kt = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Lỗi: Sai định dạng ngày tháng");
+                kt = false;
+            }
+        } while (!(kt));
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║     MÃ CT         |    MÃ HÓA ĐƠN   |    MÃ MẶT HÀNG   |   SỐ LƯỢNG   |      GIÁ BÁN    |    SIZE   |    TỔNG TIỀN   |        ║");
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+
+        for (HoaDonXuat hdx : listHD) {
+            if (hdx.getNgayxuat().compareTo(x) == 0) {
+                for (CTHDX ct : listCT) {
+                    if (ct.getMaHDX().equals(hdx.getMaHDX())) {
+
+                        s = s + ct.getTt();
+                        System.out.println(ct.ToString2());
+                    }
+                }
+            }
+        }
+        System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
+
+        System.out.print("doanh thu ngày "+ thangTK+" là :" + s + " VNĐ");
         scan.nextLine();
     }
     public int Tongdoanhthu() {

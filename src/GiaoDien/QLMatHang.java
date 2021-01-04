@@ -469,7 +469,7 @@ public class QLMatHang {
             Formatter f = new Formatter("MatHang.txt");
             for (MatHang mh : ds) {
                 if (mh.getMaMatHang() != "") {
-                    String content = mh.getMaMatHang() + "|" + mh.getTenMatHang() + "|" + mh.getCongdung() + "|" + mh.getGiaban() + "|" + mh.getSoluong() + "|" + mh.getDonvitinh();
+                    String content = mh.getMaMatHang() + "|" + mh.getTenMatHang() + "|" + mh.getCongdung() + "|" + mh.getGiaban() + "|" + mh.getSoluong() + "|" + mh.getDonvitinh()+ "|" + mh.getTt();
                     f.format(content + "\r\n", null);
                 }
             }

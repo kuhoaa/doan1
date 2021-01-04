@@ -123,9 +123,11 @@ public class MatHang {
                 System.out.println("Lỗi: mã mặt hàng không được để trống");
                 kt = false;
             }
+
             if (kt && !Pattern.matches("[M]{1}[H]{1}[0-9]{5}", this._maMatHang)) {
                 System.out.println("Lỗi: Mã mặt hàng phải có 7 kí tự và bắt đầu bằng MH");
                 kt = false;
+
             }
             if (kt) {
                 for (MatHang mh : list) {
@@ -207,10 +209,13 @@ public class MatHang {
                 }
             } while (!(kt));
 
-        System.out.println("thành tiền:");
-        _tt = _soluong * _giaban;
+        do {
+            System.out.println("thành tiền:");
+            _tt = _soluong * _giaban;
 
-        System.out.print("số tiền nhập là" + _tt);
+            System.out.println("số tiền nhập là" + _tt);
+
+        }while (!(kt));
             return this;
         }
 

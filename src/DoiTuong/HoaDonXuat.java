@@ -170,6 +170,7 @@ public class HoaDonXuat {
                     if (this._maKH.contains(getmaKH())&&this._maKH.equals(mh.getMaKhachHang())){
                         kt = true;
                         System.out.println("mã vừa nhập tên khách hàng là :"+mh._tenKhacHhang);
+                        this._tenKH=mh.getTenKhachHang();
                         break;
                     }
                 }
@@ -178,29 +179,31 @@ public class HoaDonXuat {
                 }
             }
         } while (!(kt));
-        do {
-            kt = true;
-            System.out.print("Nhập tên khách hàng:");
-            this._tenKH = scan.nextLine();
-            if (("").contains(this._tenKH)) {
-                System.out.println("Lỗi: Tên khách hàng không được để trống");
-                kt = false;
-            }
-            if (kt) {
-                List<KhachHang> kh = DocFilekh();
-                kt = false;
-                for (KhachHang mh : kh) {
-                    if (this._tenKH.contains(get_tenKH())&&this._tenKH.equals(mh.getTenKhachHang())){
-                        kt = true;
+//        do {
+//            kt = true;
+//            System.out.print("Nhập tên khách hàng:");
+//            this._tenKH = scan.nextLine();
+//            if (("").contains(this._tenKH)) {
+//                System.out.println("Lỗi: Tên khách hàng không được để trống");
+//                kt = false;
+//            }
+//            if (kt) {
+//                List<KhachHang> kh = DocFilekh();
+//                kt = false;
+//                for (KhachHang mh : kh) {
+//                    if (this._tenKH.contains(get_tenKH())&&this._tenKH.equals(mh.getTenKhachHang())){
+//                        kt = true;
+//
+//                        break;
+//                    }
+//                }
+//                if (kt == false) {
+//                    System.out.println("Lỗi: Mã khách hàng không khớp tên, vui lòng nhập lại");
+//                }
+//            }
+//        } while (!(kt));
 
-                        break;
-                    }
-                }
-                if (kt == false) {
-                    System.out.println("Lỗi: Mã khách hàng không khớp tên, vui lòng nhập lại");
-                }
-            }
-        } while (!(kt));
+
 
         do {
             try {

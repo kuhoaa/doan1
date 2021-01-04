@@ -138,7 +138,9 @@ public int sotiengiam;
                 for (MatHang mh : ds) {
                     if (mh.getMaMatHang().contains(this._maMH)) {
                         kt = true;
-                        System.out.println(mh.getTenMatHang());
+                        System.out.println(" MÃ :"+this._maMH+" có tên là :"+mh.getTenMatHang()+" có SIZE là: "+mh.getDonvitinh()+" giá nhập:  " +mh.getGiaban());
+                        this._donvitinh=mh.getDonvitinh();
+
                         break;
                     }
                 }
@@ -161,36 +163,56 @@ public int sotiengiam;
         } while (!(kt));
         do {
             kt = true;
+            System.out.println("lưu ý giá bán phải trên giá nhập");
             System.out.print("nhập giá bán :");
             this._giaban = Integer.parseInt(scan.nextLine());
             if (this._giaban < 0) {
                 System.out.println("Lỗi: Gía bán phải lớn hơn 0");
                 kt = false;
             }
-        } while (!(kt));
-        do {
-            kt = true;
-            System.out.print("NHập SIZE :");
-            this._donvitinh=scan.nextLine();
+            List<MatHang> ds = DocFile();
+            kt = false;
+            for (MatHang mh : ds) {
+                if (mh.getMaMatHang().contains(this._maMH)) {
 
-//            kt = false;
-
-            if (kt) {
-                List<MatHang> ds = DocFile();
-                kt = false;
-                for (MatHang mh : ds) {
-                    if (this._donvitinh.contains(mh.getDonvitinh()) && this._maMH.equals(mh.getMaMatHang())) {
-                        kt = true;
-                        System.out.println("tên giày :"+mh.getTenMatHang()+" loại : "+mh.getCongdung()+" Size"+mh.getDonvitinh());
+                    if (this._giaban<mh.getGiaban())
+                    {
+                        System.out.println("giá bán không thể nhỏ hơn giá nhập !");
+                        kt=false;
                         break;
-                    }
-                }
-                if (kt == false) {
-                    System.out.println("Lỗi: mã trên không tồn tại SIZE "+this._donvitinh);
-                }
 
+                    }
+                    else kt=true;
+
+
+                    break;
+                }
             }
+
         } while (!(kt));
+//        do {
+//            kt = true;
+//            System.out.print("NHập SIZE :");
+//            this._donvitinh=scan.nextLine();
+//
+////            kt = false;
+//
+//            if (kt) {
+//                List<MatHang> ds = DocFile();
+//                kt = false;
+//                for (MatHang mh : ds) {
+//                    if (this._donvitinh.contains(mh.getDonvitinh()) && this._maMH.equals(mh.getMaMatHang())) {
+//                        kt = true;
+//                        System.out.println("tên giày :"+mh.getTenMatHang()+" loại : "+mh.getCongdung()+" Size"+mh.getDonvitinh());
+//                        break;
+//                    }
+//                }
+//                if (kt == false) {
+//                    System.out.println("Lỗi: mã trên không tồn tại SIZE "+this._donvitinh);
+//                }
+//
+//            }
+//        } while (!(kt));
         System.out.println("thành tiền:");
         _tt = _soluong * _giaban;
 
@@ -217,7 +239,8 @@ public int sotiengiam;
                 for (MatHang mh : dsn) {
                     if (mh.getMaMatHang().contains(this._maMH)) {
                         kt = true;
-                        System.out.println(mh.getTenMatHang());
+                        System.out.println(" MÃ :"+this._maMH+"có tên là :"+mh.getTenMatHang()+" có SIZE là"+mh.getCongdung());
+                        this._donvitinh=mh.getDonvitinh();
                         break;
                     }
                 }
@@ -279,7 +302,7 @@ public int sotiengiam;
     }
 
     public String ToString2() {
-        return "║" + String.format("%-19s", this._maCTHDX) + "|" + String.format("%-17s", this._maHDX) + "|" + String.format("%-18s", this._maMH) + "|" + String.format("%-14s", this._soluong) + "|" + String.format("%-17s", this._giaban) + "|" + String.format("%-18s", this._donvitinh) + "|" + String.format("%-18s", this._tt)+"║";
+        return "║" + String.format("%-19s", this._maCTHDX) + "|" + String.format("%-17s", this._maHDX) + "|" + String.format("%-18s", this._maMH) + "|" + String.format("%-14s", this._soluong) + "|" + String.format("%-17s", this._giaban+" VND") + "|" + String.format("%-11s", this._donvitinh) + "|" + String.format("%-25s", this._tt+" VND")+"║";
     }
 
     public List<MatHang> DocFile() {
