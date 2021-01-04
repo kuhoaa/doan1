@@ -46,9 +46,6 @@ public class HoaDonXuat {
         this._maKH = _maKH;
         this._tenKH=_tenKH;
         this._ngayxuat = _ngayxuất;
-
-
-
     }
 
 

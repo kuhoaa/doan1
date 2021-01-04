@@ -11,6 +11,7 @@ import HoTro.HienThi;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -206,6 +207,15 @@ public class ThongKe {
         System.out.print("doanh thu ngày "+ ngayTK+" là :" + s + " VNĐ");
         scan.nextLine();
     }
+    public boolean checkthang(String thang,String nhaptay)
+    {
+        String[] a=thang.split("\\/");
+        String[] GetMonth=nhaptay.split("\\/");
+        if(Integer.parseInt(a[1])==Integer.parseInt(GetMonth[0])&&Integer.parseInt(a[2])==Integer.parseInt(GetMonth[1])){
+            return  true;
+        }
+        return false;
+    }
     public void thongkedoanhthuthang() {
 
 
@@ -239,10 +249,12 @@ public class ThongKe {
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
 
         for (HoaDonXuat hdx : listHD) {
-            if (hdx.getNgayxuat().compareTo(x) == 0) {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String strDate = dateFormat.format(hdx.getNgayxuat());
+            if (checkthang(strDate,thangTK)){
+                //29/12/202.
                 for (CTHDX ct : listCT) {
                     if (ct.getMaHDX().equals(hdx.getMaHDX())) {
-
                         s = s + ct.getTt();
                         System.out.println(ct.ToString2());
                     }
@@ -251,9 +263,10 @@ public class ThongKe {
         }
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
 
-        System.out.print("doanh thu ngày "+ thangTK+" là :" + s + " VNĐ");
+        System.out.print("doanh thu tháng "+ thangTK+" là :" + s + " VNĐ");
         scan.nextLine();
     }
+
     public int Tongdoanhthu() {
         System.out.println("╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢");
         System.out.println("║     MÃ CT         |    MÃ HÓA ĐƠN   |    MÃ MẶT HÀNG   |   SỐ LƯỢNG   |      GIÁ BÁN    |    SIZE   |    TỔNG TIỀN   |        ║");
